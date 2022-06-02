@@ -141,3 +141,7 @@ assim ele vai aparecer o botão so quando clicar para escrever
 .commentForm button[type="submit"]:hover {
     background: var(--green-400);
 }
+
+.commentList {
+    margin-top: 2rem;
+}
