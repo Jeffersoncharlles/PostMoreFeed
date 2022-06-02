@@ -1,4 +1,16 @@
 .container {
-    background: #333;
-    height: 80px;
+    background: var(--gray-800);
+    display: flex;
+    justify-content: center;
+    padding: 1.25rem 0;
 }
+
+
+.container img {
+    height: 2rem;
+}
+
+/*
+1.25rem = 20px
+2rem = 32px
+*/
