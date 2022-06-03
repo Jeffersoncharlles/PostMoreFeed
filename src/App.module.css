@@ -13,6 +13,17 @@
     /*sempre alinhar no topo*/
 }
 
+@media (max-width:48rem) {
+
+    html {
+        font-size: 87.5%;
+    }
+
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
 /*
 70rem = 70 * 16 = 1.120px
 2rem = 32px
