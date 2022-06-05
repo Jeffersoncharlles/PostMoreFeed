@@ -1,13 +1,25 @@
-import { formatWithMonth } from '../../utils/format';
 import { Comment } from '../Comment';
 import { Avatar } from '../Helpers/Avatar';
 import styles from './styles.module.css'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBr from 'date-fns/locale/pt-BR'
-import { useState } from 'react';
+import React, { useState } from 'react';
+
+interface Props {
+    author: {
+        avatarUrl: string;
+        name: string;
+        role: string;
+    },
+    content: {
+        type: string;
+        content: string;
+    }[],
+    publishedAt: Date
+}
 
 
-export const Post = ({ author, content, publishedAt }) => {
+export const Post = ({ author, content, publishedAt }: Props) => {
     const [comments, setComments] = useState(['Caraca ficou topDasGalaxy 👾'])
     const [newComment, setNewComment] = useState('')
 
@@ -22,26 +34,26 @@ export const Post = ({ author, content, publishedAt }) => {
         addSuffix: true
     })
     //////////////////////////////////////////////////////////////////////////////
-    const handleCreateSubmit = (e) => {
+    const handleCreateSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
         setComments(state => [newComment, ...state])
         setNewComment('')
     }
 
-    const handleNewCommentChange = (e) => {
+    const handleNewCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         e.target.setCustomValidity("")
         setNewComment(e.target.value)
     }
 
-    const handleDeleteComment = (comment) => {
+    const handleDeleteComment = (comment: string) => {
         const commentsWithoutDeleteOne = comments.filter(comments => {
             return comments != comment
         })
         setComments(commentsWithoutDeleteOne)
     }
     //////////////////////////////////////////////////////////////////////////////
-    const handleNewCommentInvalid = (e) => {
+    const handleNewCommentInvalid = (e: React.InvalidEvent<HTMLTextAreaElement>) => {
         e.target.setCustomValidity("Esse Campo é obrigatório")
     }
 
@@ -63,7 +75,7 @@ export const Post = ({ author, content, publishedAt }) => {
             </header>
 
             <article className={styles.content}>
-                {content.map((c, index) => {
+                {content.map((c) => {
                     if (c.type === 'paragraph') {
                         return <p key={c.content}>{c.content}</p>
                     } else if (c.type === 'link') {
@@ -94,7 +106,7 @@ export const Post = ({ author, content, publishedAt }) => {
             </form>
 
             <div className={styles.commentList}>
-                {comments.map((comment, index) => {
+                {comments.map((comment) => {
                     return (
                         <Comment
                             key={comment}

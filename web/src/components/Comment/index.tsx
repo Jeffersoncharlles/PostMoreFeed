@@ -3,7 +3,12 @@ import { ThumbsUp, Trash } from 'phosphor-react'
 import { Avatar } from '../Helpers/Avatar'
 import { useState } from 'react'
 
-export const Comment = ({ comment, onDeleteComment }) => {
+interface Props {
+    comment: string
+    onDeleteComment: (args: string) => void
+}
+
+export const Comment = ({ comment, onDeleteComment }: Props) => {
     const [likeCount, setLikeCount] = useState(0)
 
 

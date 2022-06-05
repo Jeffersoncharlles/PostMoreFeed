@@ -1,11 +1,12 @@
 import styles from './styles.module.css'
 
-// interface Props {
-//     src: string;
-//     alt?: string;
-// }
+interface Props {
+    src: string;
+    alt?: string;
+    hasBorder?: boolean
+}
 
-export const Avatar = ({ src, alt, hasBorder = true }) => {
+export const Avatar = ({ src, alt, hasBorder = true }: Props) => {
 
     return (
         <img
