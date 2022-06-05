@@ -139,8 +139,16 @@ assim ele vai aparecer o botão so quando clicar para escrever
     transition: background-color .3s;
 }
 
-.commentForm button[type="submit"]:hover {
+.commentForm button[type="submit"]:not(:disabled):hover {
     background: var(--green-400);
+    /*hover so vai funcionar se nao tiver disable*/
+}
+
+
+
+.commentForm button[type="submit"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .commentList {

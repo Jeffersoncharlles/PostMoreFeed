@@ -1,8 +1,17 @@
 import styles from './styles.module.css'
 import { ThumbsUp, Trash } from 'phosphor-react'
 import { Avatar } from '../Helpers/Avatar'
+import { useState } from 'react'
 
-export const Comment = ({ comment }) => {
+export const Comment = ({ comment, onDeleteComment }) => {
+    const [likeCount, setLikeCount] = useState(0)
+
+
+    const handleLikeComment = () => {
+        // setLikeCount(likeCount + 1)
+        setLikeCount((state) => state + 1)
+        //sempre que for atualizar uma informação e ela depende do valor anteriormente ideia e usar assim
+    }
 
     return (
         <div className={styles.container}>
@@ -14,16 +23,16 @@ export const Comment = ({ comment }) => {
                             <strong>Elizabeth Terry</strong>
                             <time title='2 de Junho a 09:31h' dateTime='2022-06-02 10:21:40'>Cerca de 1h atrás</time>
                         </div>
-                        <button title='Deletar comentário'>
+                        <button onClick={() => onDeleteComment(comment)} title='Deletar comentário'>
                             <Trash size={24} />
                         </button>
                     </header>
                     <p>{comment}</p>
                 </div>
                 <footer>
-                    <button>
+                    <button onClick={handleLikeComment} >
                         <ThumbsUp />
-                        Aplaudir <span>20</span>
+                        Aplaudir <span>{likeCount}</span>
                     </button>
                 </footer>
             </div>
